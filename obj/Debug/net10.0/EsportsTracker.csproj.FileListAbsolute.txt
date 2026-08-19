@@ -1,0 +1,14 @@
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\bin\Debug\net10.0\EsportsTracker.exe
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\bin\Debug\net10.0\EsportsTracker.deps.json
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\bin\Debug\net10.0\EsportsTracker.runtimeconfig.json
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\bin\Debug\net10.0\EsportsTracker.dll
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\bin\Debug\net10.0\EsportsTracker.pdb
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\obj\Debug\net10.0\EsportsTracker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\obj\Debug\net10.0\EsportsTracker.AssemblyInfoInputs.cache
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\obj\Debug\net10.0\EsportsTracker.AssemblyInfo.cs
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\obj\Debug\net10.0\EsportsTracker.csproj.CoreCompileInputs.cache
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\obj\Debug\net10.0\EsportsTracker.dll
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\obj\Debug\net10.0\refint\EsportsTracker.dll
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\obj\Debug\net10.0\EsportsTracker.pdb
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\obj\Debug\net10.0\EsportsTracker.genruntimeconfig.cache
+C:\Users\olive\Documents\kodehode\c#\vibes\EsportsTracker\obj\Debug\net10.0\ref\EsportsTracker.dll
