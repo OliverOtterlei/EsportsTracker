@@ -212,8 +212,8 @@ if (isMidThere)
 List<Match> matches = new List<Match>();
 
 
-Match match1 = new Match(t1, genG, t1);
-Match match2 = new Match(t1, genG, genG);
+Match match1 = new Match(1, t1, genG, t1);
+Match match2 = new Match(2, t1, genG, genG);
 
 matches.Add(match1);
 matches.Add(match2);
@@ -221,70 +221,70 @@ matches.Add(match2);
 if (t1PlayersByName.TryGetValue("Faker", out Player? faker))
 {
     match1.Performances.Add(
-        new MatchPerformance(faker, "Ahri", 8, 2, 6)
+        new MatchPerformance(1, faker, "Ahri", 8, 2, 6)
     );
 }
 
 if (t1PlayersByName.TryGetValue("Zeus", out Player? zeus))
 {
     match1.Performances.Add(
-        new MatchPerformance(zeus, "Gnar", 4, 5, 7)
+        new MatchPerformance(1, zeus, "Gnar", 4, 5, 7)
     );
 }
 
 if (t1PlayersByName.TryGetValue("Keria", out Player? keria))
 {
     match1.Performances.Add(
-        new MatchPerformance(keria, "Rakan", 1, 3, 15)
+        new MatchPerformance(1, keria, "Rakan", 1, 3, 15)
     );
 }
 
 if (t1PlayersByName.TryGetValue("Gumayusi", out Player? guma))
 {
     match1.Performances.Add(
-        new MatchPerformance(guma, "Jinx", 10, 1, 5)
+        new MatchPerformance(1, guma, "Jinx", 10, 1, 5)
     );
 }
 
 if (t1PlayersByName.TryGetValue("Oner", out Player? oner))
 {
     match1.Performances.Add(
-        new MatchPerformance(oner, "Vi", 4, 3, 11)
+        new MatchPerformance(1, oner, "Vi", 4, 3, 11)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Kiin", out Player? kiin))
 {
     match1.Performances.Add(
-        new MatchPerformance(kiin, "Renekton", 1, 7, 5)
+        new MatchPerformance(1, kiin, "Renekton", 1, 7, 5)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Canyon", out Player? canyon))
 {
     match1.Performances.Add(
-        new MatchPerformance(canyon, "Sejuani", 3, 6, 8)
+        new MatchPerformance(1, canyon, "Sejuani", 3, 6, 8)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Chovy", out Player? chovy))
 {
     match1.Performances.Add(
-        new MatchPerformance(chovy, "Azir", 5, 4, 5)
+        new MatchPerformance(1, chovy, "Azir", 5, 4, 5)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Ruler", out Player? ruler))
 {
     match1.Performances.Add(
-        new MatchPerformance(ruler, "Kai'Sa", 4, 4, 4)
+        new MatchPerformance(1, ruler, "Kai'Sa", 4, 4, 4)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Duro", out Player? duro))
 {
     match1.Performances.Add(
-        new MatchPerformance(duro, "Nautilus", 1, 6, 10)
+        new MatchPerformance(1, duro, "Nautilus", 1, 6, 10)
     );
 }
 /*
@@ -301,70 +301,70 @@ foreach (MatchPerformance p in match1.Performances)
 if (t1PlayersByName.TryGetValue("Faker", out Player? faker2))
 {
     match2.Performances.Add(
-        new MatchPerformance(faker2, "Orianna", 3, 4, 5)
+        new MatchPerformance(2, faker2, "Orianna", 3, 4, 5)
     );
 }
 
 if (t1PlayersByName.TryGetValue("Oner", out Player? oner2))
 {
     match2.Performances.Add(
-        new MatchPerformance(oner2, "Xin Zhao", 2, 5, 6)
+        new MatchPerformance(2, oner2, "Xin Zhao", 2, 5, 6)
     );
 }
 
 if (t1PlayersByName.TryGetValue("Keria", out Player? keria2))
 {
     match2.Performances.Add(
-        new MatchPerformance(keria2, "Bard", 0, 3, 9)
+        new MatchPerformance(2, keria2, "Bard", 0, 3, 9)
     );
 }
 
 if (t1PlayersByName.TryGetValue("Gumayusi", out Player? guma2))
 {
     match2.Performances.Add(
-        new MatchPerformance(guma2, "Ezreal", 5, 3, 4)
+        new MatchPerformance(2, guma2, "Ezreal", 5, 3, 4)
     );
 }
 
 if (t1PlayersByName.TryGetValue("Zeus", out Player? zeus2))
 {
     match2.Performances.Add(
-        new MatchPerformance(zeus2, "Jayce", 2, 3, 3)
+        new MatchPerformance(2, zeus2, "Jayce", 2, 3, 3)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Chovy", out Player? chovy2))
 {
     match2.Performances.Add(
-        new MatchPerformance(chovy2, "Sylas", 6, 2, 7)
+        new MatchPerformance(2, chovy2, "Sylas", 6, 2, 7)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Canyon", out Player? canyon2))
 {
     match2.Performances.Add(
-        new MatchPerformance(canyon2, "Wukong", 3, 3, 10)
+        new MatchPerformance(2, canyon2, "Wukong", 3, 3, 10)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Duro", out Player? duro2))
 {
     match2.Performances.Add(
-        new MatchPerformance(duro2, "Rell", 1, 2, 13)
+        new MatchPerformance(2, duro2, "Rell", 1, 2, 13)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Ruler", out Player? ruler2))
 {
     match2.Performances.Add(
-        new MatchPerformance(ruler2, "Aphelios", 6, 2, 6)
+        new MatchPerformance(2, ruler2, "Aphelios", 6, 2, 6)
     );
 }
 
 if (genGPlayersByName.TryGetValue("Kiin", out Player? kiin2))
 {
     match2.Performances.Add(
-        new MatchPerformance(kiin2, "K'Sante", 2, 3, 8)
+        new MatchPerformance(2, kiin2, "K'Sante", 2, 3, 8)
     );
 }
 
@@ -387,10 +387,14 @@ List<string> lines = new List<string>();
 
 lines.Add("Player,Champion,Kills,Deaths,Assist");
 
-foreach (MatchPerformance matchPerformance in match1.Performances)
+
+foreach (Match match in matches)
 {
-    string line = $"{matchPerformance.Player.Name},{matchPerformance.Champion},{matchPerformance.Kills},{matchPerformance.Deaths},{matchPerformance.Assists}";
-    lines.Add(line);
+    foreach (MatchPerformance matchPerformance in match.Performances)
+    {
+        string line = $"{match.ID},{matchPerformance.Player.Name},{matchPerformance.Champion},{matchPerformance.Kills},{matchPerformance.Deaths},{matchPerformance.Assists}";
+        lines.Add(line);
+    }
 }
 
 File.WriteAllLines("performances.csv", lines);
@@ -415,29 +419,34 @@ foreach (string[] line in splitLines)
     Console.WriteLine();
 }
 
-Match testMatch = new Match(t1, genG, t1);
+Match testMatch = new Match(3, t1, genG, t1);
 
 foreach (string[] line in splitLines.Skip(1))
 {
-    string champ = line[1];
-    int.TryParse(line[2], out int kills);
-    int.TryParse(line[3], out int deaths);
-    int.TryParse(line[4], out int assists);
+    string champ = line[2];
+    int.TryParse(line[3], out int kills);
+    int.TryParse(line[4], out int deaths);
+    int.TryParse(line[5], out int assists);
 
-    string name = line[0];
+    string name = line[1];
     if (t1PlayersByName.TryGetValue(name, out Player? t1Player))
     {
-        MatchPerformance mp = new MatchPerformance(t1Player, champ, kills, deaths, assists);
-        match1.Performances.Add(mp);
+        MatchPerformance mp = new MatchPerformance(3, t1Player, champ, kills, deaths, assists);
+        testMatch.Performances.Add(mp);
     }
     else if (genGPlayersByName.TryGetValue(name, out Player? genGPlayer))
     {
-        MatchPerformance mp = new MatchPerformance(genGPlayer, champ, kills, deaths, assists);
-        match1.Performances.Add(mp);
+        MatchPerformance mp = new MatchPerformance(3, genGPlayer, champ, kills, deaths, assists);
+        testMatch.Performances.Add(mp);
     }
     else
     {
         return;
     }
     
+}
+
+foreach (MatchPerformance performance in testMatch.Performances)
+{
+    Console.WriteLine($"TEST    {performance.Player.Name} - {performance.Champion} - {performance.Kills}/{performance.Deaths}/{performance.Assists}");
 }
