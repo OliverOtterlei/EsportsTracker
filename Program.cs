@@ -1,20 +1,24 @@
 ﻿
+using System.Diagnostics;
+using System.Globalization;
+using System.IO.Compression;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 
 Team t1 = new Team("T1");
 Team genG = new Team("Gen.G");
-t1.Players.Add(new Player("Faker", "Mid"));
-t1.Players.Add(new Player("Oner", "Jungle"));
-t1.Players.Add(new Player("Keria", "Support"));
-t1.Players.Add(new Player("Gumayusi", "ADC"));
-t1.Players.Add(new Player("Peyz", "ADC"));
-t1.Players.Add(new Player("Zeus", "Top"));
+t1.Players.Add(new Player("Faker", "Mid", t1));
+t1.Players.Add(new Player("Oner", "Jungle", t1));
+t1.Players.Add(new Player("Keria", "Support", t1));
+t1.Players.Add(new Player("Gumayusi", "ADC", t1));
+t1.Players.Add(new Player("Peyz", "ADC", t1));
+t1.Players.Add(new Player("Zeus", "Top", t1));
 
-genG.Players.Add(new Player("Chovy", "Mid"));
-genG.Players.Add(new Player("Canyon", "Jungle"));
-genG.Players.Add(new Player("Ruler", "ADC"));
-genG.Players.Add(new Player("Kiin", "Top"));
-genG.Players.Add(new Player("Duro", "Support"));
+genG.Players.Add(new Player("Chovy", "Mid", genG));
+genG.Players.Add(new Player("Canyon", "Jungle", genG));
+genG.Players.Add(new Player("Ruler", "ADC", genG));
+genG.Players.Add(new Player("Kiin", "Top", genG));
+genG.Players.Add(new Player("Duro", "Support", genG));
 
 List<Team> teams = new List<Team>
 {
@@ -208,9 +212,7 @@ if (isMidThere)
     Console.WriteLine($"Amount: {midLaneCount}");
 }*/
 
-
 List<Match> matches = new List<Match>();
-
 
 Match match1 = new Match(1, t1, genG, t1);
 Match match2 = new Match(2, t1, genG, genG);
@@ -287,15 +289,6 @@ if (genGPlayersByName.TryGetValue("Duro", out Player? duro))
         new MatchPerformance(1, duro, "Nautilus", 1, 6, 10)
     );
 }
-/*
-foreach (MatchPerformance p in match1.Performances)
-{
-    Console.WriteLine($"{p.Player.Name} - {p.Champion} - {p.Kills}/{p.Deaths}/{p.Assists}");
-}
-*/
-
-
-
 
 
 if (t1PlayersByName.TryGetValue("Faker", out Player? faker2))
@@ -368,6 +361,7 @@ if (genGPlayersByName.TryGetValue("Kiin", out Player? kiin2))
     );
 }
 
+
 foreach (Match match in matches)
 {
     Console.WriteLine($"{match.Team1.Name} vs {match.Team2.Name}");
@@ -375,7 +369,9 @@ foreach (Match match in matches)
 
     foreach (MatchPerformance performance in match.Performances)
     {
-        Console.WriteLine($"{performance.Player.Name} - {performance.Champion} - {performance.Kills}/{performance.Deaths}/{performance.Assists}");
+        Console.WriteLine(
+            $"{performance.Player.Name} - {performance.Champion} - {performance.Kills}/{performance.Deaths}/{performance.Assists}"
+        );
     }
 }
 
@@ -383,16 +379,18 @@ var t1WinCounter = matches.Count(m => m.Winner == t1);
 
 Console.WriteLine($"T1 wins: {t1WinCounter}");
 
+
 List<string> lines = new List<string>();
 
-lines.Add("Player,Champion,Kills,Deaths,Assist");
-
+lines.Add("MatchID,Player,Champion,Kills,Deaths,Assists");
 
 foreach (Match match in matches)
 {
     foreach (MatchPerformance matchPerformance in match.Performances)
     {
-        string line = $"{match.ID},{matchPerformance.Player.Name},{matchPerformance.Champion},{matchPerformance.Kills},{matchPerformance.Deaths},{matchPerformance.Assists}";
+        string line =
+            $"{match.ID},{matchPerformance.Player.Name},{matchPerformance.Champion},{matchPerformance.Kills},{matchPerformance.Deaths},{matchPerformance.Assists}";
+
         lines.Add(line);
     }
 }
@@ -407,8 +405,10 @@ List<string[]> splitLines = new List<string[]>();
 foreach (string line in pLines)
 {
     string[] parts = line.Split(',');
+
     splitLines.Add(parts);
 }
+
 
 foreach (string[] line in splitLines)
 {
@@ -416,37 +416,201 @@ foreach (string[] line in splitLines)
     {
         Console.Write($"{part} ");
     }
+
     Console.WriteLine();
 }
 
-Match testMatch = new Match(3, t1, genG, t1);
+
+Match testMatch1 = new Match(1, t1, genG, t1);
+Match testMatch2 = new Match(2, t1, genG, genG);
+
+List<Match> testMatches = new List<Match>();
+testMatches.Add(testMatch1);
+testMatches.Add(testMatch2);
 
 foreach (string[] line in splitLines.Skip(1))
 {
     string champ = line[2];
+    int.TryParse(line[0], out int id);
     int.TryParse(line[3], out int kills);
     int.TryParse(line[4], out int deaths);
     int.TryParse(line[5], out int assists);
 
     string name = line[1];
+
     if (t1PlayersByName.TryGetValue(name, out Player? t1Player))
     {
-        MatchPerformance mp = new MatchPerformance(3, t1Player, champ, kills, deaths, assists);
-        testMatch.Performances.Add(mp);
+        foreach (Match match in testMatches)
+        {
+            if (id == match.ID)
+            {
+                MatchPerformance mp =
+                    new MatchPerformance(id, t1Player, champ, kills, deaths, assists);
+
+                match.Performances.Add(mp);    
+            }
+            
+        }
     }
     else if (genGPlayersByName.TryGetValue(name, out Player? genGPlayer))
     {
-        MatchPerformance mp = new MatchPerformance(3, genGPlayer, champ, kills, deaths, assists);
-        testMatch.Performances.Add(mp);
+        foreach (Match match in testMatches)
+        {
+            if (id == match.ID)
+            {
+                MatchPerformance mp =
+                    new MatchPerformance(id, genGPlayer, champ, kills, deaths, assists);
+
+                match.Performances.Add(mp);    
+            }
+            
+        }
     }
     else
     {
         return;
     }
-    
 }
 
-foreach (MatchPerformance performance in testMatch.Performances)
+
+foreach (Match match in testMatches)
 {
-    Console.WriteLine($"TEST    {performance.Player.Name} - {performance.Champion} - {performance.Kills}/{performance.Deaths}/{performance.Assists}");
+    foreach (MatchPerformance mp in match.Performances)
+    {
+        Console.WriteLine(
+            $"TEST    ID{mp.MatchID} -- {mp.Player.Name} - {mp.Champion} - {mp.Kills}/{mp.Deaths}/{mp.Assists}"
+        );
+    }
+}
+
+
+
+var allPerformances = testMatches.SelectMany(t => t.Performances);
+
+var fakerPerformances = allPerformances.Where(t => t.Player == faker);
+
+var zeusPerformances = allPerformances.Where(t => t.Player == zeus);
+
+var keriaPerformances = allPerformances.Where(t => t.Player == keria);
+
+var gumaPerformances = allPerformances.Where(t => t.Player == guma);
+
+var onerPerformances = allPerformances.Where(t => t.Player == oner);
+
+
+var kiinPerformances = allPerformances.Where(t => t.Player == kiin);
+
+var canyonPerformances = allPerformances.Where(t => t.Player == canyon);
+
+var chovyPerformances = allPerformances.Where(t => t.Player == chovy);
+
+var rulerPerformances = allPerformances.Where(t => t.Player == ruler);
+
+var duroPerformances = allPerformances.Where(t => t.Player == duro);
+
+
+int fakerKills = fakerPerformances.Sum(p => p.Kills);
+
+
+var allGroupedPerformances = allPerformances.GroupBy(p => p.Player);
+
+foreach (var group in allGroupedPerformances)
+{
+    Player player = group.Key;
+
+    int totalKills = group.Sum(p => p.Kills);
+    int totalDeaths = group.Sum(p => p.Deaths);
+    int totalAssists = group.Sum(p => p.Assists);
+    double totalKDA = (double)(totalKills + totalAssists) / totalDeaths;
+    
+
+    Console.WriteLine($"Player: {player.Name}, KDA: {totalKills}/{totalDeaths}/{totalAssists}, summed KDA: {totalKDA:F2}");
+}
+
+var playerStats = allGroupedPerformances.Select(group =>
+{
+    int totalKills = group.Sum(p => p.Kills);
+    int totalDeaths = group.Sum(p => p.Deaths);
+    int totalAssists = group.Sum(p => p.Assists);
+    double totalKDA = (double)(totalKills + totalAssists) / totalDeaths;
+
+    return new
+    {
+        Player = group.Key,
+        KDA = totalKDA
+    };
+});
+
+var kdaLeaderboard = playerStats.OrderByDescending(p => p.KDA);
+
+int placement = 1;
+
+foreach (var p in kdaLeaderboard)
+{
+    Console.WriteLine($"{placement}.    {p.Player.Name}    KDA: {p.KDA:F2}");
+    placement++;
+}
+
+
+var fakerGroupByChamps = fakerPerformances.GroupBy(p => p.Champion);
+
+foreach (var group in fakerGroupByChamps)
+{
+    string champ = group.Key;
+    Console.WriteLine($"{champ}: {group.Count()}");
+}
+
+var fakerMostPlayedChamps = fakerGroupByChamps.OrderByDescending(p => p.Count());
+
+var fakerMostPlayedChamp = fakerMostPlayedChamps.FirstOrDefault();
+
+if (fakerMostPlayedChamp != null)
+{
+    Console.WriteLine($"Fakers most player champ: {fakerMostPlayedChamp.Key} ({fakerMostPlayedChamp.Count()})");
+}
+
+
+var allGroupedByChamp = allGroupedPerformances.Select (group => new
+{
+    Player = group.Key,
+    ChampionGroups = group.GroupBy(g => g.Champion)
+});
+
+foreach (var player in allGroupedByChamp)
+{
+    var mostPlayedGeneral = player.ChampionGroups.OrderByDescending(g => g.Count());
+    var mostPlayedChamp = mostPlayedGeneral.FirstOrDefault();
+    if (mostPlayedChamp != null)
+    {
+        Console.WriteLine($"{player.Player.Name}, {mostPlayedChamp.Key}, {mostPlayedChamp.Count()}");
+    }
+}
+
+foreach (var mp in allPerformances)
+{
+    foreach (Match match in testMatches)
+    {
+        if (match.ID == mp.MatchID)
+        {
+            if (mp.Player.Team == match.Winner)
+            {
+                Console.WriteLine($"{mp.Player.Name} won");
+            }
+            else
+            {
+                Console.WriteLine($"{mp.Player.Name} lost");
+            }
+        }
+    }
+}
+
+var t1WonGames = testMatches.Where(g => g.Winner == t1);
+var t1LostGames = testMatches.Where(g => (g.Team1 == t1 || g.Team2 == t1) && g.Winner != t1);
+
+var testMatchesByID = testMatches.ToDictionary(m => m.ID);
+
+foreach (MatchPerformance mp in allPerformances)
+{
+    Console.WriteLine(testMatchesByID[mp.MatchID].Winner.Name);
+    
 }

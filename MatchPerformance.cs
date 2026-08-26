@@ -1,17 +1,23 @@
 public class MatchPerformance
 {
     public int MatchID { get; set; }
-    public Player Player { set; get; }
-    public string Champion { set; get; }
-    public int Kills { set; get; }
-    public int Deaths { set; get; }
-    public int Assists { set; get; }
+    public Player Player { get; set; }
+    public string Champion { get; set; }
+    public int Kills { get; set; }
+    public int Deaths { get; set; }
+    public int Assists { get; set; }
 
-    public MatchPerformance(int id, Player player, string champ, int kills, int deaths, int assists)
+    public MatchPerformance(
+        int matchID,
+        Player player,
+        string champion,
+        int kills,
+        int deaths,
+        int assists)
     {
-        MatchID = id;
+        MatchID = matchID;
         Player = player;
-        Champion = champ;
+        Champion = champion;
         Kills = kills;
         Deaths = deaths;
         Assists = assists;
