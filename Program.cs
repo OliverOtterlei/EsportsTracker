@@ -69,11 +69,6 @@ foreach (string line in File.ReadLines("2026_LoL_esports_match_data_from_Oracles
     }
 
 
-    if (player == tempPlayer)
-    {
-        continue;
-    }
-
     /*if (league == "MSI" && date.StartsWith("2026-07-12"))
     {
         Console.WriteLine($"In game {game} {team} {player} picked {champion} and had a scoreline of {kills}/{deaths}/{assists}. The game ended in a {result} for {team} and {player}");
@@ -86,3 +81,34 @@ foreach (string line in File.ReadLines("2026_LoL_esports_match_data_from_Oracles
 Console.WriteLine($"Teams: {teams.Count()}");
 Console.WriteLine($"Players: {players.Count()}");
 Console.WriteLine($"Performances: {performances.Count()}");
+
+foreach (Player player in players)
+{
+    if (player.Name == "Faker")
+    {
+        int totalMatches = 0;
+        int totalWins = 0;
+        int totalKills = 0;
+        int totalDeaths = 0;
+        int totalAssists = 0;
+        foreach (MatchPerformance mp in player.MatchPerformances)
+        {
+            totalMatches++;
+            totalKills += mp.Kills;
+            totalDeaths += mp.Deaths;
+            totalAssists += mp.Assists;
+            string result;
+            if (mp.Result)
+            {
+                result = "Win";
+                totalWins++;
+            }
+            else
+            {
+                result = "loss";
+            }
+            Console.WriteLine($"Player: {player.Name}   Champ: {mp.Champion}    KDA: {mp.Kills}/{mp.Deaths}/{mp.Assists}    Result: {result}");
+        }
+        Console.WriteLine($"Player: {player.Name}, Total games: {totalMatches}, Total wins: {totalWins}, Total KDA: {totalKills}/{totalDeaths}/{totalAssists}");
+    }
+}
